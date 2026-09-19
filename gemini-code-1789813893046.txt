@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 7 Scholarship Exam - English (Topic: Email)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+      background-color: #f0f4f8;
+    }
+    .email-box {
+      font-family: monospace, 'Courier New', Courier;
+    }
+    @media print {
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 antialiased py-6 px-3 sm:px-6">
+
+  <!-- Main Container -->
+  <div class="max-w-3xl mx-auto">
+
+    <!-- Header Card -->
+    <header class="bg-gradient-to-r from-indigo-900 via-blue-800 to-indigo-900 text-white rounded-2xl shadow-xl p-6 mb-6 relative overflow-hidden text-center border-b-4 border-amber-400">
+      <div class="absolute right-4 top-4">
+        <!-- Hidden Admin Toggle Button -->
+        <button id="adminBtn" class="text-indigo-200 hover:text-white text-lg p-2 rounded-full hover:bg-white/10 transition" title="शिक्षक सेटिंग्ज (Admin)">
+          <i class="fa-solid fa-gear"></i>
+        </button>
+      </div>
+
+      <div class="inline-block bg-amber-400 text-indigo-950 font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wider mb-2">
+        Pre-Upper Primary Scholarship Examination (Std. 7th)
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wide uppercase text-amber-300">
+        Mudhoji High School Phaltan
+      </h1>
+      <p class="text-blue-100 font-medium text-sm sm:text-base mt-1">
+        मुधोजी हायस्कूल फलटण • इंग्रजी ऑनलाईन सराव चाचणी
+      </p>
+      <div class="mt-3 flex flex-wrap justify-center gap-2 text-xs sm:text-sm font-semibold">
+        <span class="bg-white/20 px-3 py-1 rounded-md">Topic: <strong>Email Writing & Comprehension</strong></span>
+        <span class="bg-white/20 px-3 py-1 rounded-md">Total Questions: <strong>10</strong></span>
+        <span class="bg-amber-400 text-indigo-950 px-3 py-1 rounded-md">Total Marks: <strong>20 (2 Marks Each)</strong></span>
+      </div>
+    </header>
+
+    <!-- Test Closed Notice Screen -->
+    <div id="testClosedCard" class="hidden bg-white rounded-2xl shadow-lg p-8 text-center border-t-8 border-rose-500">
+      <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">चाचणी सध्या बंद आहे</h2>
+      <p class="text-slate-600 mb-4">
+        शिक्षकांनी ही चाचणी सध्या मर्यादित वेळेसाठी बंद केली आहे. कृपया वर्गशिक्षकांशी संपर्क साधा किंवा नंतर पुन्हा प्रयत्न करा.
+      </p>
+      <span class="text-xs bg-slate-100 text-slate-500 px-3 py-1 rounded">Mudhoji High School Phaltan</span>
+    </div>
+
+    <!-- Student Registration Screen -->
+    <div id="studentFormCard" class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-6 border border-slate-100">
+      <h2 class="text-xl font-bold text-indigo-900 mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-user-graduate text-amber-500"></i> विद्यार्थ्याची माहिती (Student Details)
+      </h2>
+      <form id="startQuizForm" onsubmit="event.preventDefault(); startQuiz();" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">विद्यार्थ्याचे पूर्ण नाव (Full Name): <span class="text-red-500">*</span></label>
+          <input type="text" id="studentName" required placeholder="उदा. राहुल सचिन पाटील"
+            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">हजेरी क्रमांक / रोल नंबर (Roll No / Seat No):</label>
+          <input type="text" id="rollNumber" placeholder="उदा. 24"
+            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800">
+        </div>
+        <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs sm:text-sm text-blue-900">
+          <p class="font-semibold mb-1"><i class="fa-solid fa-circle-info mr-1"></i> महत्त्वाच्या सूचना:</p>
+          <ul class="list-disc list-inside space-y-1 text-slate-700">
+            <li>प्रत्येक प्रश्नात वर एक ईमेल दिला आहे, तो काळजीपूर्वक वाचा.</li>
+            <li>प्रत्येक योग्य उत्तराला २ गुण मिळतील (एकूण २० गुण).</li>
+            <li>टेस्ट सबमिट केल्यानंतर लगेचच तुमचे गुण व अचूक स्पष्टीकरण दिसेल.</li>
+            <li>शेवटी येणाऱ्या गुणांच्या कार्डचा स्क्रीनशॉट काढून व्हॉट्सअ‍ॅप ग्रुपवर पाठवा.</li>
+          </ul>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition duration-200 text-base">
+          चाचणी सुरू करा (Start Test) <i class="fa-solid fa-arrow-right ml-2"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Quiz Questions Container -->
+    <div id="quizContainer" class="hidden space-y-6">
+      <div class="bg-indigo-50 border border-indigo-200 px-4 py-3 rounded-xl flex items-center justify-between text-indigo-900 font-semibold text-sm sticky top-2 z-10 shadow-sm backdrop-blur bg-opacity-95">
+        <div><i class="fa-solid fa-user mr-1 text-indigo-600"></i> <span id="displayStudentHeader"></span></div>
+        <div class="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs">Total: 20 Marks</div>
+      </div>
+
+      <form id="quizForm" onsubmit="event.preventDefault(); submitQuiz();" class="space-y-6">
+        <!-- Question List generated dynamically -->
+        <div id="questionsList" class="space-y-6"></div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition duration-200 text-lg flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> चाचणी पूर्ण करून सबमिट करा (Submit Test)
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Result / Screenshot Card -->
+    <div id="resultCard" class="hidden space-y-6">
+      <div id="screenshotArea" class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-indigo-600 relative overflow-hidden">
+        
+        <div class="absolute top-0 right-0 bg-amber-400 text-indigo-950 font-bold px-6 py-1 rounded-bl-2xl text-xs uppercase tracking-wider">
+          Official Scorecard
+        </div>
+
+        <div class="text-center pb-4 border-b border-slate-200">
+          <h2 class="text-2xl sm:text-3xl font-black text-indigo-900 uppercase tracking-tight">Mudhoji High School Phaltan</h2>
+          <p class="text-slate-500 text-xs sm:text-sm font-semibold">Scholarship Examination Practice Test (Class 7)</p>
+          <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-0.5 rounded-full mt-1">Topic: English - Email</span>
+        </div>
+
+        <!-- Student Info Strip -->
+        <div class="grid grid-cols-2 gap-4 my-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div>
+            <span class="text-xs text-slate-500 font-medium block">विद्यार्थ्याचे नाव (Student Name)</span>
+            <span id="resStudentName" class="text-base sm:text-lg font-bold text-slate-900 block"></span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 font-medium block">हजेरी क्र. (Roll No.)</span>
+            <span id="resRollNo" class="text-base sm:text-lg font-bold text-slate-900 block">-</span>
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 font-medium block">तारीख व वेळ (Date & Time)</span>
+            <span id="resDateTime" class="text-xs sm:text-sm font-semibold text-slate-700 block"></span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-500 font-medium block">चाचणी स्थिती (Status)</span>
+            <span id="resStatusBadge" class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">Submitted</span>
+          </div>
+        </div>
+
+        <!-- Big Score Box -->
+        <div class="bg-gradient-to-br from-indigo-900 via-blue-800 to-indigo-950 text-white rounded-2xl p-6 text-center shadow-lg relative my-4">
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-amber-300 mb-1">आपले एकूण गुण (Total Score)</p>
+          <div class="flex items-baseline justify-center gap-2">
+            <span id="scoreObtained" class="text-5xl sm:text-6xl font-black text-white">0</span>
+            <span class="text-2xl sm:text-3xl font-bold text-indigo-300">/ 20</span>
+          </div>
+          <div class="mt-3 flex items-center justify-center gap-4 text-sm font-medium">
+            <span class="bg-white/10 px-3 py-1 rounded-lg">टक्केवारी: <strong id="scorePercent">0%</strong></span>
+            <span class="bg-white/10 px-3 py-1 rounded-lg">अचूक उत्तरे: <strong id="correctCount">0</strong> / 10</span>
+          </div>
+        </div>
+
+        <div class="text-center mt-4 text-xs font-medium text-slate-500 bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+          <i class="fa-solid fa-camera text-amber-600 mr-1"></i>
+          <strong>सूचना:</strong> वरील संपूर्ण कार्डचा <strong>स्क्रीनशॉट (Screenshot)</strong> काढून आपल्या वर्गशिक्षकांच्या व्हॉट्सअ‍ॅप नंबरवर पाठवा.
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-3 justify-center no-print">
+        <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-800 text-white font-semibold py-2.5 px-5 rounded-xl text-sm flex items-center gap-2">
+          <i class="fa-solid fa-print"></i> प्रिंट / सेव्ह PDF (Save PDF)
+        </button>
+        <button onclick="scrollToReview()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-5 rounded-xl text-sm flex items-center gap-2">
+          <i class="fa-solid fa-magnifying-glass"></i> चुकीची व योग्य उत्तरे तपासा (Review Answers)
+        </button>
+      </div>
+
+      <!-- Detailed Review with Explanations -->
+      <div id="reviewContainer" class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-slate-200 space-y-6">
+        <h3 class="text-xl font-bold text-slate-900 border-b pb-3 flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-indigo-600"></i> सर्व प्रश्नांची सविस्तर उत्तरे व स्पष्टीकरण (Answer Key & Explanations)
+        </h3>
+        <div id="reviewQuestionsList" class="space-y-6"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Admin Modal (Password Protected) -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
+      <button onclick="closeAdminModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-user-shield text-indigo-600"></i> शिक्षक नियंत्रण कक्ष (Teacher Panel)
+      </h3>
+      <p class="text-xs text-slate-500 mb-4">Mudhoji High School Phaltan - Admin Control</p>
+
+      <div id="adminAuthSection" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">शिक्षकांचा पासवर्ड प्रविष्ट करा:</label>
+          <input type="password" id="adminPasswordInput" placeholder="Password टाका"
+            class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <p id="adminErrorMsg" class="text-red-500 text-xs mt-1 hidden">चुकीचा पासवर्ड! कृपया पुन्हा प्रयत्न करा.</p>
+        </div>
+        <button onclick="verifyAdminPassword()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-sm">
+          लॉगिन करा (Verify)
+        </button>
+      </div>
+
+      <div id="adminControlsSection" class="hidden space-y-5 pt-2">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-bold text-slate-800">चाचणी स्थिती (Test Status):</span>
+            <span id="currentStatusBadge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700">चालू (OPEN)</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">
+            येथून आपण ही टेस्ट लिंक चालू (Open) किंवा बंद (Close) करू शकता. बंद केल्यास विद्यार्थी फॉर्म भरू शकणार नाहीत.
+          </p>
+          <div class="flex gap-2">
+            <button onclick="setTestStatus(true)" id="btnOpenTest" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg text-xs flex items-center justify-center gap-1">
+              <i class="fa-solid fa-door-open"></i> टेस्ट चालू करा (OPEN)
+            </button>
+            <button onclick="setTestStatus(false)" id="btnCloseTest" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2 rounded-lg text-xs flex items-center justify-center gap-1">
+              <i class="fa-solid fa-door-closed"></i> टेस्ट बंद करा (CLOSE)
+            </button>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-400 bg-slate-50 p-2.5 rounded border border-slate-100">
+          <strong>टीप:</strong> ही सेटिंग आपल्या सध्याच्या ब्राउझरमध्ये साठवली जाते. पूर्ववत करण्यासाठी पुन्हा येथे येऊन बदल करा.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Questions Data with Email Snippets
+    const quizData = [
+      {
+        id: 1,
+        email: {
+          from: "anita.deshmukh@gmail.com",
+          to: "mudhoji.office@gmail.com",
+          date: "12 August 2026, 09:30 AM",
+          subject: "Leave application due to viral fever",
+          body: `Respected Class Teacher,\nI am Anita Deshmukh from Class 7 (Roll No. 18). I have been suffering from viral fever since yesterday. The doctor has advised me complete bed rest for two days.\nKindly grant me leave for 12th and 13th August.\n\nThanking you,\nYours obediently,\nAnita Deshmukh`
+        },
+        question: "What is the primary reason Anita wrote this email to the class teacher?",
+        options: [
+          "To request leave for two days due to illness.",
+          "To submit her English homework project.",
+          "To invite the teacher for a birthday party.",
+          "To inquire about upcoming scholarship exam dates."
+        ],
+        correct: 0,
+        explanation: "Anita clearly mentions in the subject and the body that she is suffering from viral fever and requests leave for two days (12th and 13th August)."
+      },
+      {
+        id: 2,
+        email: {
+          from: "headmaster@mudhoji.edu.in",
+          to: "allstudents7th@mudhoji.edu.in",
+          date: "05 September 2026, 11:00 AM",
+          subject: "Celebration of Teachers' Day tomorrow",
+          body: `Dear Students,\nTomorrow on 5th September, our school will celebrate Teachers' Day in the main auditorium at 10:00 AM. All students of Class 7 must attend in clean school uniform.\n\nBest regards,\nPrincipal,\nMudhoji High School Phaltan`
+        },
+        question: "Where will the Teachers' Day celebration take place as mentioned in the email?",
+        options: [
+          "In the school playground.",
+          "In the main auditorium.",
+          "In the science laboratory.",
+          "In the Class 7 classroom."
+        ],
+        correct: 1,
+        explanation: "The email body specifically states: 'our school will celebrate Teachers' Day in the main auditorium at 10:00 AM.'"
+      },
+      {
+        id: 3,
+        email: {
+          from: "librarian@mudhoji.edu.in",
+          to: "rohan.shinde@gmail.com",
+          date: "15 July 2026, 02:15 PM",
+          subject: "Reminder: Return of library book 'Wings of Fire'",
+          body: `Dear Rohan,\nThis is a gentle reminder that the book 'Wings of Fire' issued to you on 1st July was due yesterday. Kindly return it to the library by tomorrow to avoid a late fine of Rs. 2 per day.\n\nRegards,\nLibrarian, Mudhoji High School`
+        },
+        question: "What penalty will Rohan face if he does not return the book on time?",
+        options: [
+          "He will be suspended from school.",
+          "A late fine of Rs. 2 per day.",
+          "He will have to buy a new book.",
+          "He cannot sit for the English exam."
+        ],
+        correct: 1,
+        explanation: "The email states clearly: 'to avoid a late fine of Rs. 2 per day.'"
+      },
+      {
+        id: 4,
+        email: {
+          from: "sports.coach@mudhoji.edu.in",
+          to: "kabaddi.team7@mudhoji.edu.in",
+          date: "18 August 2026, 04:00 PM",
+          subject: "Selection trials for Inter-School Kabaddi Tournament",
+          body: `Dear Players,\nThe selection trials for the upcoming Taluka Level Inter-School Kabaddi Tournament will be held on Friday at 7:00 AM on the school ground. Bring your sports shoes and identity cards.\n\nCoach Patil Sir,\nPhysical Education Dept.`
+        },
+        question: "What two items are students asked to bring for the selection trials?",
+        options: [
+          "English textbook and notebook.",
+          "Sports shoes and identity card.",
+          "Kabaddi kit and medical certificate.",
+          "Parent consent letter and water bottle."
+        ],
+        correct: 1,
+        explanation: "The coach explicitly writes: 'Bring your sports shoes and identity cards.'"
+      },
+      {
+        id: 5,
+        email: {
+          from: "rohit.kadam7@gmail.com",
+          to: "soham.jagtap@gmail.com",
+          date: "10 October 2026, 06:45 PM",
+          subject: "Invitation: My 13th Birthday Party!",
+          body: `Hi Soham,\nI am organizing a small get-together at my home near Maloja Tank, Phaltan, this Sunday at 6:00 PM to celebrate my 13th birthday. We will play board games and have delicious pav-bhaji. Do come!\n\nYour friend,\nRohit`
+        },
+        question: "What is the tone and type of this email sent by Rohit?",
+        options: [
+          "Formal email to an official authority.",
+          "Informal email inviting a friend.",
+          "Commercial email selling food items.",
+          "Official notification from a teacher."
+        ],
+        correct: 1,
+        explanation: "The email begins with 'Hi Soham' and ends with 'Your friend, Rohit'. It invites a friend to a birthday party, making it an informal personal email."
+      },
+      {
+        id: 6,
+        email: {
+          from: "scienceclub@mudhoji.edu.in",
+          to: "students.class7@mudhoji.edu.in",
+          date: "22 November 2026, 10:15 AM",
+          subject: "Annual Science Exhibition - Registration Deadline",
+          body: `Dear Young Scientists,\nThe annual Science Exhibition will be held on 1st December. Interested students from Std 7 must submit their working model ideas to Mrs. Kulkarni teacher on or before 25th November. Late entries will not be accepted.\n\nIn-charge,\nScience Club`
+        },
+        question: "What is the last date for Class 7 students to submit their model ideas?",
+        options: [
+          "1st December",
+          "22nd November",
+          "25th November",
+          "30th November"
+        ],
+        correct: 2,
+        explanation: "The body notes: 'submit their working model ideas to Mrs. Kulkarni teacher on or before 25th November.'"
+      },
+      {
+        id: 7,
+        email: {
+          from: "examcell@mudhoji.edu.in",
+          to: "std7.scholars@mudhoji.edu.in",
+          date: "14 January 2027, 08:30 AM",
+          subject: "Change in Sunday Scholarship Practice Test Timings",
+          body: `Dear Students,\nPlease note that this Sunday's scholarship mock test timings have been rescheduled. Instead of 09:00 AM, the test will now start at 11:00 AM sharp in Hall No. 4.\n\nExamination Department,\nMudhoji High School Phaltan`
+        },
+        question: "What is the revised start time for the scholarship mock test?",
+        options: [
+          "09:00 AM",
+          "10:30 AM",
+          "11:00 AM",
+          "12:00 PM"
+        ],
+        correct: 2,
+        explanation: "The email explicitly highlights: 'Instead of 09:00 AM, the test will now start at 11:00 AM sharp.'"
+      },
+      {
+        id: 8,
+        email: {
+          from: "rahul.more@gmail.com",
+          to: "support@scholasticbooks.com",
+          date: "03 February 2027, 01:20 PM",
+          subject: "Enquiry about Scholarship Practice Question Sets",
+          body: `Dear Sir/Madam,\nI am a Class 7 student from Phaltan. I would like to purchase the 'Std 7 Pre-Upper Primary Scholarship Practice Workbook (English Medium)'. Could you please share the price and delivery charges to Phaltan?\n\nSincerely,\nRahul More`
+        },
+        question: "Which field in an email tells the receiver what the email is about before opening it?",
+        options: [
+          "From field",
+          "Subject line",
+          "Attachment icon",
+          "Signature block"
+        ],
+        correct: 1,
+        explanation: "The 'Subject line' summarizes the main topic or objective of an email so the recipient understands its purpose immediately."
+      },
+      {
+        id: 9,
+        email: {
+          from: "priya.joshi@gmail.com",
+          to: "neha.kale@gmail.com",
+          date: "28 February 2027, 05:00 PM",
+          subject: "English Grammar Notes - Chapter on Prepositions",
+          body: `Dear Neha,\nAs discussed on phone, I have attached the scanned PDF notes of English grammar (Prepositions) that our teacher taught today. Please check the attachment.\n\nWarm regards,\nPriya`
+        },
+        question: "How has Priya shared the grammar notes with Neha in this email?",
+        options: [
+          "Typed in the subject line",
+          "As an attached scanned PDF",
+          "Through postal mail",
+          "As a voice recording"
+        ],
+        correct: 1,
+        explanation: "Priya writes: 'I have attached the scanned PDF notes... Please check the attachment.'"
+      },
+      {
+        id: 10,
+        email: {
+          from: "art.club@mudhoji.edu.in",
+          to: "class7all@mudhoji.edu.in",
+          date: "05 March 2027, 11:45 AM",
+          subject: "Results: Inter-Class Poster Making Competition",
+          body: `Congratulations to all participants!\nThe results for the 'Save Water, Save Life' poster contest are out:\n1st Prize: Swara Pawar (Class 7-B)\n2nd Prize: Aryan Nalawade (Class 7-A)\nPrizes will be distributed during Monday's school assembly.\n\nCoordinator, Art Club`
+        },
+        question: "Who won the first prize in the poster making competition according to the email?",
+        options: [
+          "Aryan Nalawade",
+          "Swara Pawar",
+          "Priya Joshi",
+          "Mrs. Kulkarni"
+        ],
+        correct: 1,
+        explanation: "The announcement text mentions: '1st Prize: Swara Pawar (Class 7-B)'."
+      }
+    ];
+
+    // Local Storage State for Teacher Lock
+    let isTestActive = localStorage.getItem('mudhoji_test_status') !== 'closed';
+    const ADMIN_PASS = "mudhoji123"; // शिक्षकांचा गुप्त पासवर्ड
+
+    // Initialize App
+    document.addEventListener('DOMContentLoaded', () => {
+      checkTestStatusUI();
+      renderQuestions();
+    });
+
+    function checkTestStatusUI() {
+      if (!isTestActive) {
+        document.getElementById('testClosedCard').classList.remove('hidden');
+        document.getElementById('studentFormCard').classList.add('hidden');
+        document.getElementById('quizContainer').classList.add('hidden');
+        document.getElementById('resultCard').classList.add('hidden');
+      } else {
+        document.getElementById('testClosedCard').classList.add('hidden');
+      }
+    }
+
+    // Render 10 questions with email headers
+    function renderQuestions() {
+      const container = document.getElementById('questionsList');
+      container.innerHTML = '';
+
+      quizData.forEach((item, index) => {
+        const qCard = document.createElement('div');
+        qCard.className = "bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition";
+        qCard.innerHTML = `
+          <!-- Question Header -->
+          <div class="bg-indigo-50/70 border-b border-indigo-100 px-5 py-3 flex items-center justify-between">
+            <span class="font-bold text-indigo-950 text-sm sm:text-base">
+              Question ${index + 1} of 10
+            </span>
+            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-300">
+              2 Marks
+            </span>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-4">
+            <!-- Email Box Snippet -->
+            <div class="email-box bg-slate-900 text-slate-100 rounded-xl p-4 text-xs sm:text-sm border border-slate-800 shadow-inner leading-relaxed">
+              <div class="flex items-center gap-2 pb-2 mb-2 border-b border-slate-700 text-amber-400 font-sans font-semibold">
+                <i class="fa-regular fa-envelope"></i> Email Message (संदेश वाचा)
+              </div>
+              <div class="text-slate-400"><strong class="text-slate-300">From:</strong> ${item.email.from}</div>
+              <div class="text-slate-400"><strong class="text-slate-300">To:</strong> ${item.email.to}</div>
+              <div class="text-slate-400"><strong class="text-slate-300">Date:</strong> ${item.email.date}</div>
+              <div class="text-slate-200 pb-2 border-b border-slate-800"><strong class="text-amber-300">Subject:</strong> ${item.email.subject}</div>
+              <div class="pt-2 text-slate-200 whitespace-pre-line font-sans text-xs sm:text-sm bg-slate-800/60 p-3 rounded-lg mt-2">${item.email.body}</div>
+            </div>
+
+            <!-- Question Text -->
+            <div class="font-semibold text-slate-900 text-base sm:text-lg">
+              <span class="text-indigo-600 font-bold">Q.${index + 1}:</span> ${item.question}
+            </div>
+
+            <!-- Options Grid -->
+            <div class="space-y-2 pt-1">
+              ${item.options.map((opt, optIndex) => `
+                <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-indigo-50 hover:border-indigo-300 cursor-pointer transition">
+                  <input type="radio" name="q_${item.id}" value="${optIndex}" required
+                    class="mt-1 w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-slate-300">
+                  <span class="text-slate-700 text-sm sm:text-base font-medium">${opt}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        container.appendChild(qCard);
+      });
+    }
+
+    // Start Quiz
+    function startQuiz() {
+      if (!isTestActive) {
+        alert("चाचणी शिक्षकांनी बंद ठेवली आहे.");
+        return;
+      }
+      const name = document.getElementById('studentName').value.trim();
+      const roll = document.getElementById('rollNumber').value.trim();
+
+      if (!name) {
+        alert("कृपया विद्यार्थ्याचे नाव प्रविष्ट करा.");
+        return;
+      }
+
+      document.getElementById('displayStudentHeader').textContent = `${name} ${roll ? '(Roll: ' + roll + ')' : ''}`;
+      document.getElementById('studentFormCard').classList.add('hidden');
+      document.getElementById('quizContainer').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Submit Quiz & Evaluate
+    function submitQuiz() {
+      const studentName = document.getElementById('studentName').value.trim();
+      const rollNumber = document.getElementById('rollNumber').value.trim() || "-";
+
+      let score = 0;
+      let correctCount = 0;
+      const userAnswers = [];
+
+      quizData.forEach((q) => {
+        const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
+        const userChoice = selected ? parseInt(selected.value) : null;
+        userAnswers.push(userChoice);
+
+        if (userChoice === q.correct) {
+          score += 2;
+          correctCount++;
+        }
+      });
+
+      // Populate Result Card
+      document.getElementById('resStudentName').textContent = studentName;
+      document.getElementById('resRollNo').textContent = rollNumber;
+      
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ", " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      document.getElementById('resDateTime').textContent = dateStr;
+
+      document.getElementById('scoreObtained').textContent = score;
+      document.getElementById('correctCount').textContent = correctCount;
+      const percentage = Math.round((score / 20) * 100);
+      document.getElementById('scorePercent').textContent = percentage + "%";
+
+      // Hide Quiz, Show Result
+      document.getElementById('quizContainer').classList.add('hidden');
+      document.getElementById('resultCard').classList.remove('hidden');
+
+      // Generate Detailed Review with Explanation
+      renderReview(userAnswers);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render Answer Key and Explanations
+    function renderReview(userAnswers) {
+      const reviewList = document.getElementById('reviewQuestionsList');
+      reviewList.innerHTML = '';
+
+      quizData.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isRight = uAns === q.correct;
+
+        const revItem = document.createElement('div');
+        revItem.className = `p-4 sm:p-5 rounded-2xl border ${isRight ? 'bg-green-50/60 border-green-200' : 'bg-rose-50/60 border-rose-200'} space-y-3`;
+
+        revItem.innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base">
+              ${idx + 1}. ${q.question}
+            </h4>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${isRight ? 'bg-green-600 text-white' : 'bg-rose-600 text-white'} whitespace-nowrap">
+              ${isRight ? '+2 Marks' : '0 Marks'}
+            </span>
+          </div>
+
+          <div class="text-xs sm:text-sm space-y-1">
+            <p class="text-slate-700">
+              <strong class="font-semibold">तुमचे उत्तर (Your Answer):</strong> 
+              <span class="${isRight ? 'text-green-700 font-bold' : 'text-rose-700 font-bold'}">
+                ${uAns !== null ? q.options[uAns] : 'Not Answered'} 
+                ${isRight ? '<i class="fa-solid fa-circle-check ml-1"></i>' : '<i class="fa-solid fa-circle-xmark ml-1"></i>'}
+              </span>
+            </p>
+            ${!isRight ? `
+              <p class="text-slate-700">
+                <strong class="font-semibold text-emerald-800">अचूक उत्तर (Correct Answer):</strong> 
+                <span class="text-emerald-800 font-bold">${q.options[q.correct]}</span>
+              </p>
+            ` : ''}
+          </div>
+
+          <div class="bg-white/80 p-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700">
+            <strong class="text-indigo-900"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> स्पष्टीकरण (Explanation):</strong>
+            <p class="mt-0.5 text-slate-600">${q.explanation}</p>
+          </div>
+        `;
+        reviewList.appendChild(revItem);
+      });
+    }
+
+    function scrollToReview() {
+      document.getElementById('reviewContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Teacher / Admin Modal Logic
+    const adminBtn = document.getElementById('adminBtn');
+    const adminModal = document.getElementById('adminModal');
+
+    adminBtn.addEventListener('click', () => {
+      document.getElementById('adminPasswordInput').value = '';
+      document.getElementById('adminErrorMsg').classList.add('hidden');
+      document.getElementById('adminAuthSection').classList.remove('hidden');
+      document.getElementById('adminControlsSection').classList.add('hidden');
+      adminModal.classList.remove('hidden');
+    });
+
+    function closeAdminModal() {
+      adminModal.classList.add('hidden');
+    }
+
+    function verifyAdminPassword() {
+      const pass = document.getElementById('adminPasswordInput').value;
+      if (pass === ADMIN_PASS) {
+        document.getElementById('adminAuthSection').classList.add('hidden');
+        document.getElementById('adminControlsSection').classList.remove('hidden');
+        updateAdminStatusUI();
+      } else {
+        document.getElementById('adminErrorMsg').classList.remove('hidden');
+      }
+    }
+
+    function updateAdminStatusUI() {
+      const badge = document.getElementById('currentStatusBadge');
+      if (isTestActive) {
+        badge.textContent = "चालू (OPEN)";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700";
+      } else {
+        badge.textContent = "बंद (CLOSED)";
+        badge.className = "text-xs font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700";
+      }
+    }
+
+    function setTestStatus(status) {
+      isTestActive = status;
+      localStorage.setItem('mudhoji_test_status', status ? 'open' : 'closed');
+      updateAdminStatusUI();
+      checkTestStatusUI();
+      alert(status ? "चाचणी यशस्वीरित्या चालू (OPEN) करण्यात आली आहे." : "चाचणी यशस्वीरित्या बंद (CLOSE) करण्यात आली आहे.");
+      closeAdminModal();
+    }
+  </script>
+</body>
+</html>
+```eof
+
+### शिक्षकांसाठी वापराच्या सोप्या टिप्स (How to use):
+1. **फाईल वापरणे:** ही फाईल `.html` फॉरमॅटमध्ये सेव्ह केलेली आहे (उदा. `Mudhoji_Class7_Email_Test.html`). 
+2. **ऑनलाइन लिंक तयार करणे:** आपण ही सिंगल HTML फाईल **GitHub Pages**, **Netlify Drop**, किंवा **Vercel** वर ड्रॅग आणि ड्रॉप करून अवघ्या १ मिनिटात मोफत लाइव्ह लिंक मिळवू शकता आणि ती व्हॉट्सअ‍ॅप ग्रुपवर शेअर करू शकता.
+3. **चाचणी बंद किंवा चालू करणे (Admin Control):**
+   - स्क्रीनच्या उजव्या वरच्या कोपऱ्यात एक लहान 'Gear' (⚙️) आयकॉन दिला आहे.
+   - त्यावर क्लिक करून शिक्षकांचा पासवर्ड `mudhoji123` टाकावा.
+   - तेथून आपण एका क्लिकवर चाचणी चालू (Open) किंवा बंद (Close) करू शकता. बंद केल्यानंतर विद्यार्थ्यांना 'चाचणी सध्या बंद आहे' असा संदेश दिसेल. विद्यार्थ्यांसाठी पासवर्ड पूर्णपणे गुप्त राहील.
+4. **विद्यार्थ्यांचे निकाल व स्क्रीनशॉट:** टेस्ट सोडवल्यानंतर विद्यार्थ्याचे नाव, हजेरी क्रमांक, तारीख आणि २० पैकी मिळालेले गुण यांचे सुंदर कार्ड तयार होते, ज्याचा स्क्रीनशॉट विद्यार्थी सहज पाठवू शकतील. खाली प्रत्येक प्रश्नाचे योग्य उत्तर व मराठीत स्पष्टीकरणही दिसेल.
